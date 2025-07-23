@@ -33,6 +33,12 @@ def Recommend(movie):
         time.sleep(0.5)  # polite delay for API
     return recommended_movies, recommended_posters
 
+if not os.path.exists("similarity.pkl"):
+    file_id = "1xQIIOPaFR2be_XE2G1YyuakWNwweRSdR"  # Replace with actual Google Drive ID
+    url = f"https://drive.google.com/uc?id={file_id}"
+    gdown.download(url, "similarity.pkl", quiet=False)
+
+
 # Load Data
 movies_dict = pickle.load(open('movie_dict.pkl', 'rb'))
 movies = pd.DataFrame(movies_dict)
